@@ -19,17 +19,3 @@ export const conversations = [
     conversationId: 1,
   },
 ];
-//pws diavazei h pws setarei ton active user
-
-//state.activeUser = undefined (Login.js)
-
-//the state used in Login.js doesnt reflect the updates happening
-// on the reducer
-
-//move effects on login component. Post only state on the reducer
-
-// conversations.forEach(chat => {
-//   if (chat.participants.includes(username)) {
-//     userConversations = [...userConversations, chat];
-//   }
-// });
