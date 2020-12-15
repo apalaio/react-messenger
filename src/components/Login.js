@@ -10,8 +10,7 @@ const Login = ({ dispatch, state }) => {
     e.preventDefault();
     dispatch({ type: "login", payload: { username, password } });
     console.log("state.activeUser:", state.activeUser);
-    debugger;
-    // console.log("state", state);
+    // debugger;
     if (state.activeUser !== null) {
       dispatch({ type: "loginSuccess", payload: state.activeUser.id });
     } else {

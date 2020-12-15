@@ -19,11 +19,6 @@ const fetchConversations = userId => {
   return conversations.filter(chat =>
     chat.participants.filter(user => user.userId === userId)
   );
-  // conversations.forEach(chat => {
-  //   if (chat.participants.includes(username)) {
-  //     userConversations = [...userConversations, chat];
-  //   }
-  // });
 };
 
 function reducer(state, action) {
