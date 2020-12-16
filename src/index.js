@@ -9,3 +9,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+//put username , pass on the reducer
+//update them with onChange on inputs
+//onSubmit pairnei data pali apo to store k
+//epeksergazetai wste na ta ksanabalei sto store

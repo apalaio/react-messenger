@@ -1,23 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import { DispatchContext, StateContext } from "./App";
 
-const Login = ({ dispatch, state }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  // const dispatch = useContext(DispatchContext);
-  // const state = useContext(StateContext);
+const Login = () => {
+  const dispatch = useContext(DispatchContext);
+  const state = useContext(StateContext);
+  let { username, password } = state;
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch({ type: "login", payload: { username, password } });
+    dispatch({ type: "login", username, password });
     console.log("state.activeUser:", state.activeUser);
-    // debugger;
-    if (state.activeUser !== null) {
+  };
+
+  useEffect(() => {
+    if (state.isLoading) {
       dispatch({ type: "loginSuccess", payload: state.activeUser.id });
     } else {
       dispatch({ type: "error" });
     }
     console.log("state", state);
-  };
+  }, [state.isLoading]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -26,16 +28,26 @@ const Login = ({ dispatch, state }) => {
         type="text"
         placeholder="username"
         value={username}
-        onChange={e => {
-          setUsername(e.currentTarget.value);
-        }}
+        onChange={e =>
+          dispatch({
+            type: "field",
+            field: "username",
+            value: e.currentTarget.value,
+          })
+        }
       />
       <input
         type="password"
         placeholder="password"
         autoComplete="new-password"
         value={password}
-        onChange={e => setPassword(e.currentTarget.value)}
+        onChange={e =>
+          dispatch({
+            type: "field",
+            field: "password",
+            value: e.currentTarget.value,
+          })
+        }
       />
       <button type="submit">Log in</button>
     </form>
