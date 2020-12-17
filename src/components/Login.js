@@ -4,22 +4,28 @@ import { DispatchContext, StateContext } from "./App";
 const Login = () => {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
-  let { username, password } = state;
+  let { username, password, isLoading, activeUser, isLoggedIn } = state;
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch({ type: "login", username, password });
-    console.log("state.activeUser:", state.activeUser);
+    if (isLoggedIn) {
+      alert("You are already signed in");
+    } else {
+      try {
+        dispatch({ type: "login", username, password });
+      } catch {
+        dispatch({ type: "error", payload: "User not found" });
+      }
+    }
+    console.log("state.activeUser:", activeUser);
   };
 
   useEffect(() => {
-    if (state.isLoading) {
-      dispatch({ type: "loginSuccess", payload: state.activeUser.id });
-    } else {
-      dispatch({ type: "error" });
+    if (isLoading) {
+      dispatch({ type: "loginSuccess", payload: activeUser.id });
     }
     console.log("state", state);
-  }, [state.isLoading]);
+  }, [isLoading]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -49,7 +55,9 @@ const Login = () => {
           })
         }
       />
-      <button type="submit">Log in</button>
+      <button type="submit" disabled={isLoading}>
+        Log in
+      </button>
     </form>
   );
 };

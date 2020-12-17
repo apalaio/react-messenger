@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DispatchContext, StateContext } from "./App";
+
+import "./styling/Conversation.css";
 
 const Conversations = () => {
-  //display a list of Conversation items
+  const { userConversations, activeUser } = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
+
+  console.log("userConversations", userConversations);
+
+  const friends = userConversations
+    .map(conv => conv.participants)
+    .flat()
+    .filter(x => x.userId !== activeUser.id);
+
+  const showConversation = friendId => {
+    dispatch({ type: "showConversation", friendId, userId: activeUser.id });
+  };
+
+  console.log("friends", friends);
+  return (
+    <ul>
+      {friends.map(friend => (
+        <li key={friend.userId} onClick={() => showConversation(friend.userId)}>
+          {friend.username}
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default Conversations;

@@ -13,9 +13,22 @@ export const conversations = [
     ],
     messages: [
       { id: 1, userId: 1, content: "Hello" },
-      { id: 2, userId: 1, content: "Hey there" },
+      { id: 2, userId: 2, content: "Hey there" },
       { id: 3, userId: 1, content: "how are you?" },
     ],
     conversationId: 1,
+  },
+
+  {
+    participants: [
+      { userId: 1, username: "user" },
+      { userId: 4, username: "user3" },
+    ],
+    messages: [
+      { id: 1, userId: 4, content: "Hello" },
+      { id: 2, userId: 1, content: "Whats up" },
+      { id: 3, userId: 4, content: "Great!" },
+    ],
+    conversationId: 2,
   },
 ];
