@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { DispatchContext, StateContext } from "./App";
 
+import "./styling/App.css";
+
 const Login = () => {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
@@ -25,9 +27,9 @@ const Login = () => {
     }
   }, [isLoading]);
 
-  return (
-    <form onSubmit={onSubmit}>
-      <b> Please Login</b>
+  return !isLoggedIn ? (
+    <form onSubmit={onSubmit} className="login-form">
+      <b> Please Login </b>
       <input
         type="text"
         placeholder="username"
@@ -57,6 +59,8 @@ const Login = () => {
         Log in
       </button>
     </form>
+  ) : (
+    <div className="login-form"></div>
   );
 };
 

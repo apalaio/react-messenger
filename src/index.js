@@ -1,11 +1,13 @@
-import React from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
 
+export const StateContext = createContext();
+export const DispatchContext = createContext();
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
+
   document.getElementById("root")
 );

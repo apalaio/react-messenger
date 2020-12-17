@@ -5,6 +5,8 @@ import Conversations from "./Conversations";
 import Chat from "./Chat";
 import InputField from "./InputField";
 
+import "./styling/App.css";
+
 export const StateContext = createContext();
 export const DispatchContext = createContext();
 
@@ -28,7 +30,7 @@ function App() {
         <div className="App">
           <Login />
           {state.isLoggedIn ? (
-            <div className="container">
+            <div className="grid-container">
               <Conversations />
               <Chat />
               <InputField />

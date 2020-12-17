@@ -1,19 +1,61 @@
-.App {
-  text-align: center;
-  display: grid;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100%;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
+  text-align: center;
+  justify-content: center;
+  max-height: 500px;
+  max-width: 800px;
+}
+
+.login-form {
+  margin: 20px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0px 0px;
+  grid-template-areas:
+    "Conversations Chat Chat Chat"
+    "Conversations Chat Chat Chat"
+    ". input-form input-form input-form";
+  border: 2px solid black;
+}
+
+.conversations {
+  grid-area: Conversations;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+}
+
+.chat {
+  grid-area: Chat;
+
+  border-bottom: 2px solid black;
+  background-color: rgb(220, 220, 220);
+}
+
+.sender-name {
+  font-size: 0.6rem;
+  font-weight: 200;
+  padding-right: 10px;
+}
+
+.input-form {
+  margin-top: 10px;
+  grid-area: input-form;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
 }

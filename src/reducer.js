@@ -35,9 +35,9 @@ const insertNewMessage = (msg, conv, user) => {
       content: msg,
     },
   ];
-  console.log({ updatedMessages });
-  conv[0].messages = updatedMessages;
-  console.log("conv to return", conv[0]);
+  console.log({ conv }, { updatedMessages });
+  conv[0].messages.push(updatedMessages[updatedMessages.length - 1]);
+  console.log({ conv });
   return conv;
 };
 
@@ -78,13 +78,14 @@ export default function reducer(state, action) {
         ),
       };
     }
+
     case "newMessage": {
       return {
         ...state,
         activeConversation: insertNewMessage(
-          action.msg,
-          action.conv,
-          action.user
+          state.input,
+          state.activeConversation,
+          state.activeUser
         ),
         input: "",
       };

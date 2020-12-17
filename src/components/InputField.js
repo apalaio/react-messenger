@@ -1,24 +1,22 @@
 import React, { useContext } from "react";
 import { DispatchContext, StateContext } from "./App";
 
+import "./styling/App.css";
+
 const InputField = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
 
   const submit = e => {
     e.preventDefault();
-    console.log("this ran");
     //the user triggering this will be the "activeUser" in every case
     dispatch({
       type: "newMessage",
-      msg: state.input,
-      conv: state.activeConversation,
-      user: state.activeUser,
     });
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className="input-form">
       <input
         type="text"
         value={state.input}
@@ -30,7 +28,7 @@ const InputField = () => {
           })
         }
       ></input>
-      <button>Send</button>
+      {state.activeConversation ? <button>Send</button> : <div></div>}
     </form>
   );
 };
