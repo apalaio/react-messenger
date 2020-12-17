@@ -3,7 +3,6 @@ import { StateContext } from "./App";
 
 const Chat = () => {
   const state = useContext(StateContext);
-  console.log("activeConversation (chat comp):", state.activeConversation);
 
   return state.activeConversation ? (
     <ul>

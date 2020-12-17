@@ -5,8 +5,6 @@ import Conversations from "./Conversations";
 import Chat from "./Chat";
 import InputField from "./InputField";
 
-// import "./styling/App.css";
-
 export const StateContext = createContext();
 export const DispatchContext = createContext();
 

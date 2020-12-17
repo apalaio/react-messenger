@@ -7,8 +7,6 @@ const Conversations = () => {
   const { userConversations, activeUser } = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
 
-  console.log("userConversations", userConversations);
-
   const friends = userConversations
     .map(conv => conv.participants)
     .flat()
@@ -18,7 +16,6 @@ const Conversations = () => {
     dispatch({ type: "showConversation", friendId, userId: activeUser.id });
   };
 
-  console.log("friends", friends);
   return (
     <ul>
       {friends.map(friend => (

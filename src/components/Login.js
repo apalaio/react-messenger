@@ -17,14 +17,12 @@ const Login = () => {
         dispatch({ type: "error", payload: "User not found" });
       }
     }
-    console.log("state.activeUser:", activeUser);
   };
 
   useEffect(() => {
     if (isLoading) {
       dispatch({ type: "loginSuccess", payload: activeUser.id });
     }
-    console.log("state", state);
   }, [isLoading]);
 
   return (
