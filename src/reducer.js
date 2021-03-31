@@ -15,7 +15,7 @@ const fetchConversations = userId => {
 
 const fetchActiveConversation = (userId, friendId) => {
   const activeConversation = {
-    ...conversations.filter(conv => {
+    ...conversations.find(conv => {
       return (
         (conv.participants[0].userId === userId &&
           conv.participants[1].userId === friendId) ||
@@ -28,15 +28,15 @@ const fetchActiveConversation = (userId, friendId) => {
 };
 const insertNewMessage = (msg, conv, user) => {
   const updatedMessages = [
-    ...conv[0].messages,
+    ...conv.messages,
     {
-      id: conv[0].messages.length + 1,
+      id: conv.messages.length + 1,
       userId: user.id,
       content: msg,
     },
   ];
   console.log({ conv }, { updatedMessages });
-  conv[0].messages.push(updatedMessages[updatedMessages.length - 1]);
+  conv.messages.push(updatedMessages[updatedMessages.length - 1]);
   console.log({ conv });
   return conv;
 };

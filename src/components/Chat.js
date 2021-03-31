@@ -8,11 +8,11 @@ const Chat = () => {
 
   return state.activeConversation ? (
     <ul className="chat">
-      {state.activeConversation[0].messages.map(msg => (
+      {state.activeConversation.messages.map(msg => (
         <li key={msg.id}>
           <span className="sender-name">
             {
-              state.activeConversation[0].participants.find(
+              state.activeConversation.participants.find(
                 p => p.userId === msg.userId
               ).username
             }
