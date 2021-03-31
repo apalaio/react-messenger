@@ -35,10 +35,8 @@ const insertNewMessage = (msg, conv, user) => {
       content: msg,
     },
   ];
-  console.log({ conv }, { updatedMessages });
-  conv.messages.push(updatedMessages[updatedMessages.length - 1]);
-  console.log({ conv });
-  return conv;
+
+  return { ...conv, messages: updatedMessages };
 };
 
 export default function reducer(state, action) {
