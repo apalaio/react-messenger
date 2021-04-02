@@ -7,12 +7,6 @@ const fetchActiveUser = (username, password) => {
   return activeUser[0];
 };
 
-const fetchConversations = userId => {
-  return conversations.filter(chat =>
-    chat.participants.filter(user => user.userId === userId)
-  );
-};
-
 const fetchActiveConversation = (userId, friendId) => {
   const activeConversation = {
     ...conversations.find(conv => {
@@ -39,6 +33,12 @@ const insertNewMessage = (msg, conv, user) => {
   return { ...conv, messages: updatedMessages };
 };
 
+const fetchConversations = userId => {
+  return conversations.filter(chat =>
+    chat.participants.filter(user => user.userId === userId)
+  );
+};
+
 export default function reducer(state, action) {
   switch (action.type) {
     case "field": {
@@ -54,16 +54,22 @@ export default function reducer(state, action) {
     case "loginSuccess": {
       return {
         ...state,
-        userConversations: fetchConversations(
-          action.payload,
-          state.activeConversation,
-          state.activeUser
-        ),
         isLoading: false,
         isLoggedIn: true,
         username: "",
         password: "",
         error: "",
+      };
+    }
+
+    case "fetchConversations": {
+      return {
+        ...state,
+        userConversations: fetchConversations(
+          action.payload,
+          state.activeConversation,
+          state.activeUser
+        ),
       };
     }
 
@@ -85,6 +91,13 @@ export default function reducer(state, action) {
           state.activeConversation,
           state.activeUser
         ),
+        input: "",
+      };
+    }
+
+    case "clearInput": {
+      return {
+        ...state,
         input: "",
       };
     }

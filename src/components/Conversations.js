@@ -23,7 +23,10 @@ const Conversations = () => {
         {friends.map(friend => (
           <li
             key={friend.userId}
-            onClick={() => showConversation(friend.userId)}
+            onClick={() => {
+              showConversation(friend.userId);
+              dispatch({ type: "clearInput" });
+            }}
           >
             {friend.username}
           </li>

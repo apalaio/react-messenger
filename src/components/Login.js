@@ -23,7 +23,8 @@ const Login = () => {
 
   useEffect(() => {
     if (isLoading) {
-      dispatch({ type: "loginSuccess", payload: activeUser.id });
+      dispatch({ type: "loginSuccess" });
+      dispatch({ type: "fetchConversations", payload: activeUser.id });
     }
   }, [isLoading]);
 
